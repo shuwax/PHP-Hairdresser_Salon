@@ -17,10 +17,9 @@
 4.Tomasz K³y¿ - Stworzyæ(widok, kontroler) dla u¿ytkowników oraz po³¹czenie z zewnêtrzn¹ baz¹ danych</br>
 5.Sebastian Cytawa - Stworzyæ(widok, kontroler) dla Rezerwacji</br>
 6.Pawe³ Czuchaj - Stworzyæ(widok, kontroler) dla  Us³ug</br>
-7.Kamil Jonaszko</br>
+7.Kamil Jonaszko - Stworzyæ menu i css</br>
 
-Dostepne zadania:
-1.Stworzyc menu i css
+
 
 <h1>Stan z 07.03.2016</h1>
 1.Kamil Chmielowski - stworzenie wzorcowej bazy danych </br>
@@ -33,3 +32,4 @@ Dostepne zadania:
 
 KCH 7-03-2015 wykonalem baze danych Salonu</br>
 Frzyjerskiego oraz procedure sp_NowaRezerwacja</br>
+
