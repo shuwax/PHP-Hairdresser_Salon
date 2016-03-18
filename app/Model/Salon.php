@@ -28,5 +28,67 @@ class Salon extends AppModel {
     var $actsAs = array(
         'Upload' => array('filename')
     );
+    public $validate = array(
+        'name' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'city' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'adress' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'filename' => array(
+                'notBlank' => array(
+                    'rule' => array('notBlank'),
+                    //'message' => 'Your custom message here',
+                    //'allowEmpty' => false,
+                    //'required' => false,
+                    //'last' => false, // Stop validation after this rule
+                    //'on' => 'create', // Limit validation to 'create' or 'update' operations
+        ),
+        ),
+        'tel' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'email' => array(
+            'email' => array(
+                'rule' => array('email'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+    );
 
 }
