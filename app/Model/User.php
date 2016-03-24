@@ -14,5 +14,5 @@
 App::uses('AppModel', 'Model');
 
 class User extends AppModel{
-    //put your code here
+    public $useTable = 'users';
 }

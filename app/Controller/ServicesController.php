@@ -9,7 +9,8 @@ class ServicesController extends AppController {
 
     public function index() {
         $this->set('services',$this->Service->find('all'));
-     $this->set('salons',$this->Salon->find('all')); //ustawienie salons
+     $this->set('salons',$this->Salon->find('all')); 
+        return $this->Service->find('all');//ustawienie salons
     }
     public function view($id = null) {
         //ustawienie salon
