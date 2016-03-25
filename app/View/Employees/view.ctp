@@ -16,9 +16,9 @@
 			<?php echo h($employee['Employee']['last_name']); ?>
 			&nbsp;
 		</dd>       
-		<dt><?php echo __('Salon ID:'); ?></dt>
+		<dt><?php echo __('Pracodawca:'); ?></dt>
 		<dd>
-			<?php echo h($employee['Employee']['salons_id']); ?>
+			<?php echo h($salon['Salon']['name']); ?>
 			&nbsp;
 		</dd>
 	

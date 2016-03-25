@@ -19,6 +19,16 @@
 	margin:0;
 	padding:0;
 }
+
+.menu a
+{
+	color: black !important;
+	text-decoration: none;
+}
+.menu
+{
+	color: black;
+}
 .dane
 {
 	height: 72px;

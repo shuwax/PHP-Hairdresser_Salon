@@ -6,22 +6,31 @@
 			<th><?php echo 'id'; ?></th>
 			<th><?php echo 'Imie'; ?></th>
 			<th><?php echo 'Nazwisko'; ?></th>
-                        <th><?php echo 'Salon_id'; ?></th>
+                        <th><?php echo 'Pracodawca'; ?></th>
 
 			<th class="actions"><?php echo __('Opcje'); ?></th>
 		</tr>
 		</thead>
 		<tbody>
-		<?php foreach ($employees as $Employee): ?>
+		<?php foreach ($employees as $employee): ?>
 			<tr>
-				<td><?php echo h($Employee['Employee']['id']); ?></td>
-				<td><?php echo h($Employee['Employee']['first_name']); ?></td>
-				<td><?php echo h($Employee['Employee']['last_name']); ?></td>
-                                <td><?php echo h($Employee['Employee']['salons_id']); ?></td>
+				<td><?php echo h($employee['Employee']['id']); ?></td>
+				<td><?php echo h($employee['Employee']['first_name']); ?></td>
+				<td><?php echo h($employee['Employee']['last_name']); ?></td>
+				<?php
+						foreach ($salons as $salon)
+						{
+							if($employee['Employee']['salons_id'] == $salon['Salon']['id'])
+							{
+								echo '<td>'.$salon['Salon']['name'].'</td>';
+							}
+						}
+
+				?>
 				<td class="actions">
-					<?php echo $this->Html->link(__('Pracownik'), array('action' => 'view', $Employee['Employee']['id'])); ?>
-					<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $Employee['Employee']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Usunięcie'), array('action' => 'delete', $Employee['Employee']['id']), array('confirm' => __('Jesteś pewien że chcesz usunąć Pracownika o id: # %s?', $Employee['Employee']['id']))); ?>
+					<?php echo $this->Html->link(__('Pracownik'), array('action' => 'view', $employee['Employee']['id'])); ?>
+					<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $employee['Employee']['id'])); ?>
+					<?php echo $this->Form->postLink(__('Usunięcie'), array('action' => 'delete', $employee['Employee']['id']), array('confirm' => __('Jesteś pewien że chcesz usunąć Pracownika o id: # %s?', $employee['Employee']['id']))); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

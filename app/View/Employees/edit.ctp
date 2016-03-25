@@ -5,7 +5,7 @@
 		<?php
 		echo $this->Form->input('first_name',array('label' => 'Imie'));
 		echo $this->Form->input('last_name',array('label' => 'Nazwisko'));
-                echo $this->Form->input('salons_id',array('type' => 'number'));
+		echo $this->Form->input('salons_id',array('label' => 'Pracodawca'));
 
 		?>
 	</fieldset>

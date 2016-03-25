@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('id',array('hidden' => 'true'));
 		echo $this->Form->input('username',array('label' => 'Nazwa uzytkownika'));
-                echo $this->Form->input('password',array('label' => 'Haslo uzytkownika'));
+	    echo $this->Form->input('password',array('label' => 'Haslo uzytkownika'));
 		echo $this->Form->input('first_name',array('label' => 'Imie'));
 		echo $this->Form->input('last_name',array('label' => 'Nazwisko'));
 		echo $this->Form->input('email',array('label' => 'Email'));

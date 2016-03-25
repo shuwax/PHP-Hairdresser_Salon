@@ -4,6 +4,24 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
+	public function login() {
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				$this->redirect(array('controller' => 'Pages','action' => 'display'));
+			}
+			$this->Flash->error(__('Niepoprawna nazwa użytkowwnika lub hasło.'));
+		}
+	}
+
+	public function logout() {
+		$this->Auth->logout();
+		$this->redirect(array('controller' => 'Pages','action' => 'display'));
+	}
+
+
+
+
+
 	public function index() {
 		$this->set('users',$this->User->find('all'));
 	}
