@@ -34,11 +34,3 @@
 	</dl>
 </div>
 
-<div class="actions">
-	<h3><?php echo __('Opcje'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Uzytkownik'), array('controller' => 'users','action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Dodaj Uzytkownika'), array('controller' => 'users','action' => 'add')); ?></li>
-	</ul>
-</div>
-

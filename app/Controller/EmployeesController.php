@@ -6,20 +6,20 @@ class EmployeesController extends AppController {
 
 	var $uses = array('Salon','Service','Employee');
 
-	public function index() {
+	public function admin_index() {
 		$this->set('employees',$this->Employee->find('all'));
 		$this->set('salons',$this->Salon->find('all'));
 	}
 
 
-	public function view($id = null) {
+	public function admin_view($id = null) {
 		$dane =  $this->Employee->findByid($id);
 		$this->set('employee', $dane);
 		$this->set('salon',$this->Salon->findByid($dane['Employee']['salons_id']));
 	}
 
 
-	public function add() {
+	public function admin_add() {
 		$this->set('salons',$this->Salon->find('list'));
 		if ($this->request->is('post')) {
 			$this->Employee->create();
@@ -32,7 +32,7 @@ class EmployeesController extends AppController {
 		}
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		$this->set('salons',$this->Salon->find('list'));
 		$dane = $this->Employee->findByid($id);
 		if($this->request->is(array('post','put')))
@@ -50,7 +50,7 @@ class EmployeesController extends AppController {
 	}
 
 
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->Employee->id = $id;
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Employee->delete()) {

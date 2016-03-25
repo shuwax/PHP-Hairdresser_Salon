@@ -40,11 +40,3 @@
 	</dl>
 </div>
 
-<div class="actions">
-	<h3><?php echo __('Opcje'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Usługi'), array('controller' => 'services','action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Dodaj Usługę'), array('controller' => 'services','action' => 'add')); ?></li>
-	</ul>
-</div>
-

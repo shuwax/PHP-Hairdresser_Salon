@@ -17,22 +17,22 @@
                 <td><?php echo h($reservation['Reservation']['id']); ?></td>
                 <td><?php echo h($reservation['Reservation']['reservation_date']); ?></td>
 
-                                <?php // znajdz id salonu w tabeli service "join"
- 					// w kontrolerz ustaw salon jako find all
+                <?php
  					foreach($users as $user)
  					{
  						if($user['User']['id'] == $reservation['Reservation']['users_id'])
  							echo "<td>".$user['User']['username']."</td>";
  					}
  				?>
-                              <?php // znajdz id salonu w tabeli service "join"
- 					// w kontrolerz ustaw salon jako find all
+
+                <?php
  					foreach($services as $service)
  					{
  						if($service['Service']['id'] == $reservation['Reservation']['services_id'])
  							echo "<td>".$service['Service']['service_name']."</td>";
  					}
  				?>
+
                 <td class="actions">
 					<?php echo $this->Html->link(__('Pokaż'), array('action' => 'view', $reservation['Reservation']['id'])); ?>
 					<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $reservation['Reservation']['id'])); ?>
@@ -43,4 +43,3 @@
         </tbody>
     </table>
 </div>
-

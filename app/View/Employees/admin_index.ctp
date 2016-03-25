@@ -37,10 +37,3 @@
 		</tbody>
 	</table>
 </div>
-
-<div class="actions">
-	<h3><?php echo __('Opcje'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Dodaj Pracownika'), array('controller' => 'employees','action' => 'add')); ?></li>
-	</ul>
-</div>
