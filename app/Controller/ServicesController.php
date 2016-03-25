@@ -7,17 +7,17 @@ class ServicesController extends AppController {
     // np:$this->Salon->find('list);
 
 
-    public function index() {
+    public function admin_index() {
         $this->set('services',$this->Service->find('all'));
      $this->set('salons',$this->Salon->find('all')); //ustawienie salons
     }
-    public function view($id = null) {
+    public function admin_view($id = null) {
         //ustawienie salon
         $this->set('salons',$this->Salon->find('all'));
 
         $this->set('service', $this->Service->findByid($id));
     }
-    public function add() {
+    public function admin_add() {
 
         $this->set('salons',$this->Salon->find('list')); // lista do wybrania nazwy salonu
         // a nie jedynie jego id
@@ -33,7 +33,7 @@ class ServicesController extends AppController {
         }
     }
 
-    public function edit($id = null) {
+    public function admin_edit($id = null) {
         $dane = $this->Service->findByid($id); // przechowywanie danych przed zapisem
         $this->set('salons',$this->Salon->find('list'));
         if($this->request->is(array('post','put')))
@@ -51,7 +51,7 @@ class ServicesController extends AppController {
     }
 
 
-    public function delete($id = null) {
+    public function admin_delete($id = null) {
         $this->Service->id = $id;
         $this->request->allowMethod('post', 'delete');
         if ($this->Service->delete()) {

@@ -39,11 +39,4 @@
 	</dl>
 </div>
 
-<div class="actions">
-	<h3><?php echo __('Opcje'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Saloy'), array('controller' => 'salons','action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Dodaj Salon'), array('controller' => 'salons','action' => 'add')); ?></li>
-	</ul>
-</div>
 

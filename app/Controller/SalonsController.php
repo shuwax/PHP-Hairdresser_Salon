@@ -4,6 +4,10 @@ App::uses('AppController', 'Controller');
 
 class SalonsController extends AppController {
 
+	public function admin_index() {
+		$this->set('salons',$this->Salon->find('all'));
+		return $this->Salon->find('all');
+	}
 	public function index() {
 		$this->set('salons',$this->Salon->find('all'));
 		return $this->Salon->find('all');
@@ -15,7 +19,7 @@ class SalonsController extends AppController {
 	}
 
 
-	public function add() {
+	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->Salon->create();
 			if ($this->Salon->save($this->request->data)) {
@@ -27,7 +31,7 @@ class SalonsController extends AppController {
 		}
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		$dane = $this->Salon->findByid($id);
 		if($this->request->is(array('post','put')))
 		{
@@ -48,7 +52,7 @@ class SalonsController extends AppController {
 	}
 
 
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->Salon->id = $id;
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Salon->delete()) {

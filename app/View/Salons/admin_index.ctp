@@ -24,7 +24,7 @@
 				<td><?php echo h($salon['Salon']['email']); ?></td>
 				<td><?php echo h($salon['Salon']['tel']); ?></td>
 				<td class="actions">
-					<?php echo $this->Html->link(__('Salon'), array('action' => 'view', $salon['Salon']['id'])); ?>
+					<?php echo $this->Html->link(__('Salon'), array('controller'=>'../salons','action' => 'view', $salon['Salon']['id'])); ?>
 					<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $salon['Salon']['id'])); ?>
 					<?php echo $this->Form->postLink(__('Usunięcie'), array('action' => 'delete', $salon['Salon']['id']), array('confirm' => __('Jesteś pewien że chcesz usunąć salon o id: # %s?', $salon['Salon']['id']))); ?>
 				</td>
@@ -32,11 +32,4 @@
 		<?php endforeach; ?>
 		</tbody>
 	</table>
-</div>
-
-<div class="actions">
-	<h3><?php echo __('Opcje'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Dodaj Salon'), array('controller' => 'salons','action' => 'add')); ?></li>
-	</ul>
 </div>
