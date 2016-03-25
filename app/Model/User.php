@@ -15,8 +15,8 @@ App::uses('AppModel', 'Model');
 
 class User extends AppModel{
     //put your code 
-    //
-    public $useTable = 'salons';
+    public $useTable = 'users';
+    
     
     public $validate = array(
         'username' => array(
