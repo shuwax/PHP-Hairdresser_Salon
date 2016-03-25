@@ -5,8 +5,6 @@
 App::uses('AppModel', 'Model');
 
 class Reservation extends AppModel {
-
-    
     
     public $useTable = 'reservations';
    

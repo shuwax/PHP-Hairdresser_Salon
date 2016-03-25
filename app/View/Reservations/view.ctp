@@ -13,26 +13,12 @@
         </dd>
         <dt><?php echo __('User:'); ?></dt>
         <dd>
-			 <?php // znajdz id salonu w tabeli service "join"
- 					// w kontrolerz ustaw salon jako find all
- 					foreach($users as $user)
- 					{
- 						if($user['User']['id'] == $reservation['Reservation']['users_id'])
- 							echo "<td>".$user['User']['username']."</td>";
- 					}
- 				?>
+            <?php echo "<td>".$user['User']['username']."</td>";?>
             &nbsp;
         </dd>
         <dt><?php echo __('Service:'); ?></dt>
         <dd>
-			<?php // znajdz id salonu w tabeli service "join"
- 					// w kontrolerz ustaw salon jako find all
- 					foreach($services as $service)
- 					{
- 						if($service['Service']['id'] == $reservation['Reservation']['services_id'])
- 							echo "<td>".$service['Service']['service_name']."</td>";
- 					}
- 				?>
+            <?php echo "<td>".$service['Service']['service_name']."</td>";?>
             &nbsp;
         </dd>
 

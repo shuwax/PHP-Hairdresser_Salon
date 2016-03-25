@@ -4,7 +4,7 @@ App::uses('AppModel', 'Model');
 class Service extends AppModel {
 
     public $useTable = 'services';
-
+    public $displayField = 'service_name';
     public $validate = array(
         'service_name' => array(
             'notBlank' => array(

@@ -29,7 +29,8 @@ class User extends AppModel{
     }
     //put your code 
     public $useTable = 'users';
-    
+    public $displayField = 'username'; // jesli cake sam sie nie
+    // domysli to wskazac co chcemy w liscie 
     
     public $validate = array(
         'username' => array(

@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class ReservationsController extends AppController {
 
-    var $uses = array('Reservation', 'Service', 'User');
+    var $uses = array('Reservation', 'Service', 'User', 'Salon');
 
     public function index() {
      
@@ -14,9 +14,10 @@ class ReservationsController extends AppController {
     }
 
     public function view($id = null) {
-        $this->set('services', $this->Service->find('all'));
-        $this->set('users', $this->User->find('all'));
-        $this->set('reservation', $this->Reservation->findByid($id));
+        $dane = $this->Reservation->findByid($id);
+        $this->set('reservation', $dane);
+        $this->set('user', $this->User->findByid($dane['Reservation']['users_id']));
+        $this->set('service', $this->Service->findByid($dane['Reservation']['services_id']));
     }
 
     public function add() {
@@ -37,7 +38,8 @@ class ReservationsController extends AppController {
 
     public function edit($id = null) {
 
-        $dane = $this->Reservation->findByid($id); // przechowywanie danych przed zapisem
+
+        $dane = $this->Reservation->findByid($id);
         $this->set('services', $this->Service->find('list'));
 
         $this->set('users', $this->User->find('list'));
