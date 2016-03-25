@@ -16,7 +16,7 @@ class Service extends AppModel {
                 //'on' => 'create', // Limit validation to 'create' or
             ),
            'TylkoAlfabet'=> array(
-               'rule'=>array('custom','/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+$/'),
+               'rule'=>array('custom','/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ\s]+$/'),
                'message'=>'Nazwa usługi musi składać się z samych liter!'
            ),
         ),
