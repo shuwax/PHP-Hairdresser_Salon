@@ -28,18 +28,23 @@ class SalonsController extends AppController {
 	}
 
 	public function edit($id = null) {
-
+		$dane = $this->Salon->findByid($id);
 		if($this->request->is(array('post','put')))
 		{
 			$this->Salon->id = $id;
+			if($this->request->data['Salon']['filename']==null)
+			{
+				$this->request->data['Salon']['filename'] = $dane['Movie']['filename'];
+			}
 			if($this->Salon->save($this->request->data))
 			{
 				$this->Flash->success('Salon zedytowany.');
-				$this->redirect('index');
+				return $this->redirect(array('action' => 'index'));
 			}
 			else
 				$this->Flash->error('Brak możliwości edycji salonu.');
 		}
+		$this->request->data=$dane;// wypisane poprzednich danych
 	}
 
 
