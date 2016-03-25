@@ -9,31 +9,43 @@ class Service extends AppModel {
         'service_name' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-                //'message' => 'Your custom message here',
+                'message' => 'Podaj nazwę usługi!',
                 //'allowEmpty' => false,
-                //'required' => false,
+                'required' => true,
                 //'last' => false, // Stop validation after this rule
                 //'on' => 'create', // Limit validation to 'create' or
             ),
+           'TylkoAlfabet'=> array(
+               'rule'=>array('custom','/^[a-zA-Z\s]+$/'),
+               'message'=>'Nazwa usługi musi składać się z samych liter!'
+           ),
         ),
         'service_time' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-                //'message' => 'Your custom message here',
+                'message' => 'Podaj czas usługi w minutach!',
                 //'allowEmpty' => false,
-                //'required' => false,
+                'required' => true,
                 //'last' => false, // Stop validation after this rule
                 //'on' => 'create', // Limit validation to 'create' or
+            ),
+            'czasWiekszyOdZero' => array(
+                'rule' =>  array('comparison', '>', 0),
+                'message' => 'Czas usługi nie może być ujemny lub równy 0!'
             ),
         ),
         'price' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-                //'message' => 'Your custom message here',
+                'message' => 'Musisz podać cenę!',
                 //'allowEmpty' => false,
-                //'required' => false,
+                'required' => true,
                 //'last' => false, // Stop validation after this rule
                 //'on' => 'create', // Limit validation to 'create' or
+            ),
+            'cenaWiekszaOdZero' => array(
+                'rule' =>  array('comparison', '>', 0),
+                'message' => 'Cena nie może być ujemna lub równa 0!'
             ),
         ),
     );
