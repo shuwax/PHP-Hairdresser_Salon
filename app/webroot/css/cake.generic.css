@@ -19,14 +19,50 @@
 	margin:0;
 	padding:0;
 }
+.dane
+{
+	height: 72px;
+	width: 192px;
+	background-color: gainsboro;
+	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	text-align: center;
+}
+.kolumna1
+{
+	width: 870px;
+	margin-right: 10px;
+	float: left;
+	padding: 0px 0px 0px 0px;
+	position: relative;
+}
+.salon
+{
+	float: left;
+	margin: 10px 0px 0px 25px;
+}
+.zdjecie a img
+{
+	width: 192px;
+	height: 279px;
+}
+.rezerwacja a
+{
+	text-decoration: none;
+}
+
+
 
 /** General Style Info **/
 body {
-	background: #003d4c;
+	background: white;
 	color: #fff;
-	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
-	font-size:90%;
-	margin: 0;
+	font-family: "Open Sans",sans-serif;
+	font-size: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	width: 916px;
 }
 a {
 	color: #003d4c;
