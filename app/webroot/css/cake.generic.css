@@ -41,7 +41,7 @@
 }
 .kolumna1
 {
-	width: 870px;
+	width: 780px;
 	margin-right: 10px;
 	float: left;
 	padding: 0px 0px 0px 0px;
@@ -60,6 +60,24 @@
 .rezerwacja a
 {
 	text-decoration: none;
+}
+.kolumna2
+{
+        width: 100px;
+	margin-left: 10px;
+	float: right;
+	padding: 0px 0px 0px 0px;
+	position: relative;
+        bottom: 900px;
+}
+.zamowienie
+{
+    background-color: lightgray;
+    line-height: 5mm;
+    border-top: 1px solid black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 90%;
+    margin-bottom: 10%;
 }
 
 
