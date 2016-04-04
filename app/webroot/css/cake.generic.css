@@ -20,6 +20,38 @@
 	padding:0;
 }
 
+
+
+
+.zaklad-gora
+{
+	height: 194px;
+
+}
+.zaklad-zdjecie img
+{
+	height: 173px;
+	width: 164px;
+	float: left;
+}
+
+.zaklad-infoG
+{
+	overflow: hidden;
+	padding-left: 30px;
+}
+
+.zaklad-head
+{
+	font-size: 30px;
+	text-align: center;
+}
+.zaklad-kon
+{
+	float: left;
+	font-size: 20px;
+}
+
 .menu a
 {
 	color: black !important;
