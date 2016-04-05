@@ -24,5 +24,18 @@
                         </div>
 
                     </div>
+               
                 <?php endforeach ?>
+            </div>
+            <div class="kolumna2">
+                Podsumowanie:
+                    <div class="zamowienie">   
+                        <span>Zamówienie:
+                        Strzyrzenie Damskie: 1
+                        Strzyrzenie Dziecięce: 1</span>
+                    </div>
+                <div class="suma">
+                    <span>Suma: 150</span>
+                </div>
+                     
             </div>
