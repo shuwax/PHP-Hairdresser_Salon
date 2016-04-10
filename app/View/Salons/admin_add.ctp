@@ -1,4 +1,4 @@
-<div class="salon add">
+<div class="container">
 <?php echo $this->Form->create('Salon',['type' => 'file']); ?>
 	<fieldset>
 		<legend style="text-align: center"><?php echo __('Dodawanie Salonu'); ?></legend>

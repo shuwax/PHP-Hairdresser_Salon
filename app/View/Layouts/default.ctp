@@ -28,6 +28,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php
 		echo $this->Html->meta('icon');
 
+		echo $this->Html->css('bootstrap.min.css');
 		echo $this->Html->css('cake.generic');
 
 		echo $this->fetch('meta');
@@ -36,12 +37,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		?>
 </head>
 <body>
-<div id="container">
 
-	<div id="header">
+<div id="header" class='navbar navbar-default'>
+<div class='container'>
 		<?php echo $this->Element('menu');?>
 	</div>
-	<?php echo $this->Html->script('jquery-2.2.1');?>
+	</div>
+
+<div id="container" class='container'>
 	<div id="content">
 
 		<?php echo $this->Flash->render(); ?>
@@ -54,6 +57,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php echo $this->Element('footer');?>
 	</div>
 </div>
+	<?php echo $this->Html->script('jquery-2.2.1');?>
+	<?php echo $this->Html->script('bootstrap.min.js');?>
 <?php echo $this->Js->writeBuffer();?>
 </body>
 </html>

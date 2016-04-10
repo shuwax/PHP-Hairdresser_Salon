@@ -7,6 +7,7 @@
 5.Sebastian Cytawa</br>
 6.Paweł Czuchaj</br>
 7.Kamil Jonaszko</br>
+8.Vladyslav Verenich</br>
 <h1>Baza Danych</h1>
 Jej stan zmienia sie na bieżąco, korzystać z workbench aby zobaczyć aktualny stan.
 
@@ -51,6 +52,9 @@ model - salon</br>
 <h3>Kamil Chmielowski</h3></br>
 Rejestr produktu -
 
+<h3>Vladyslav Verenich</h3></br>
+Style
+
 
 
 
@@ -77,6 +81,7 @@ Dostepne zadania:
 5.Sebastian Cytawa - dodanie pustego wzorca na github</br>
 6.Paweł Czuchaj</br>
 7.Kamil Jonaszko - stworzenie grupy na facebook</br>
+8.VV - style</br>
 
 KCH 7-03-2015 wykonalem baze danych Salonu</br>
 Frzyjerskiego oraz procedure sp_NowaRezerwacja</br>

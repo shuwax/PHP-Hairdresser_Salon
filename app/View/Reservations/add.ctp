@@ -1,4 +1,4 @@
-<div class="reservation add">
+<div class="container">
 <?php echo $this->Form->create('Reservation'); ?>
     <fieldset>
         <legend style="text-align: center"><?php echo __('Dodawanie Reservation'); ?></legend>

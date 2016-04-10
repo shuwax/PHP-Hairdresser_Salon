@@ -5,6 +5,7 @@
 	<title>Administrator | <?php echo $title_for_layout; ?></title>
 	<?php
 	echo $this->fetch('meta');
+	echo $this->Html->css(array('bootstrap.min.css'));
 	echo $this->Html->css(array('admin'));
 	echo $this->fetch('css');
 	echo $this->fetch('script');
@@ -12,10 +13,9 @@
 </head>
 <body>
 <div id="container">
-	<?php echo $this->Html->script('jquery-2.2.1');?>
 
 	<?php echo $this->Element('adminmenu');?>
-	<div id="content">
+	<div>
 
 		<?php echo $this->Flash->render(); ?>
 		<?php echo $this->fetch('content'); ?>
@@ -28,6 +28,8 @@
 	</div>
 
 </div>
+	<?php echo $this->Html->script('jquery-2.2.1');?>
+	<?php echo $this->Html->script('bootstrap.min.js');?>
 <?php echo $this->Js->writeBuffer();?>
 </body>
 </html>

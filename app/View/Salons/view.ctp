@@ -1,4 +1,4 @@
-<div class="zaklad-view">
+<div class="container">
 	<div class="zaklad-gora">
 		<div class="zaklad-zdjecie">
 			<?php echo $this->Html->image('../files/salon/filename/'.$salon['Salon']['id'].'/'.$salon['Salon']['filename'],array(
