@@ -1,4 +1,4 @@
-<div class="users edit">
+<div class="container">
 	<?php echo $this->Form->create('User'); ?>
 	<fieldset>
 		<legend style="text-align: center"><?php echo __('Edycja uzytkownika'); ?></legend>

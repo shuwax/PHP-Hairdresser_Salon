@@ -1,4 +1,4 @@
-<div class="reservation view">
+<div class="container">
     <h2><?php echo __('Reservation'); ?></h2>
     <dl>
         <dt><?php echo __('Id:'); ?></dt>

@@ -1,4 +1,4 @@
-<div class="service add">
+<div class="container">
 <?php echo $this->Form->create('Service'); ?>
 	<fieldset>
 		<legend style="text-align: center"><?php echo __('Dodawanie Usługi'); ?></legend>

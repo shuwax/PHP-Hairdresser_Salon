@@ -1,4 +1,4 @@
-<div class="service view">
+<div class="container">
 <h2><?php echo __('Usługa'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id:'); ?></dt>

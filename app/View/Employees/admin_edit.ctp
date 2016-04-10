@@ -1,4 +1,4 @@
-<div class="Employee edit">
+<div class="container">
 	<?php echo $this->Form->create('Employee'); ?>
 	<fieldset>
 		<legend style="text-align: center"><?php echo __('Edycja Pracownika'); ?></legend>

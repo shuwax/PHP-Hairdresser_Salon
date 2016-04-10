@@ -1,7 +1,8 @@
-<div class="users add">
-<?php echo $this->Form->create('User'); ?>
+<div class="container">
+<?php echo $this->Form->create('User', array('class' => 'app-form')); ?>
 	<fieldset>
 		<legend style="text-align: center"><?php echo __('Dodawanie Uzytkownika'); ?></legend>
+
 	<?php
 		echo $this->Form->input('id',array('hidden' => 'true'));
 		echo $this->Form->input('username',array('label' => 'Nazwa uzytkownika'));

@@ -1,4 +1,4 @@
-<div class="Employee index">
+<div class="container">
 	<h2><?php echo __('Pracownicy'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 		<thead>
