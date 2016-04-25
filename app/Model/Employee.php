@@ -28,31 +28,28 @@ class Employee extends AppModel {
         'first_name' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'TylkoAlfabet'=> array(
+                'rule'=>array('custom','/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ\s]+$/'),
+                'message'=>'Imię musi składać się z samych liter!'
             ),
         ),
         'last_name' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'TylkoAlfabet'=> array(
+                'rule'=>array('custom','/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ\s]+$/'),
+                'message'=>'Nazwisko musi składać się z samych liter!'
             ),
         ),
         'salons_id' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'Numeric' => array(
+                'rule' => 'numeric',
+                'message' => 'ID salonu musi składać się wyłącznie z cyfr'
             ),
         ),
     );

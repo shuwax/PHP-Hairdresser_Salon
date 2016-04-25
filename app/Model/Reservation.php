@@ -22,21 +22,19 @@ class Reservation extends AppModel {
         'users_id' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'Numeric' => array(
+                'rule' => 'numeric',
+                'message' => 'ID użytkownika musi składać się wyłącznie z cyfr'
             ),
         ),
         'services_id' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'Numeric' => array(
+                'rule' => 'numeric',
+                'message' => 'ID usługi musi składać się wyłącznie z cyfr'
             ),
         ),
     );
