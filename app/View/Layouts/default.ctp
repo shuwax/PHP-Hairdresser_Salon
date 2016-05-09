@@ -30,6 +30,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->Html->css('bootstrap.min.css');
 		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('featherlight.min.css');
+
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -38,27 +40,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </head>
 <body>
 
-<div id="header" class='navbar navbar-default'>
-<div class='container'>
+		<?php echo $this->Html->script('jquery-2.2.1');?>
+		<?php echo $this->Html->script('featherlight.min');?>
 		<?php echo $this->Element('menu');?>
-	</div>
-	</div>
-
-<div id="container" class='container'>
-	<div id="content">
-
 		<?php echo $this->Flash->render(); ?>
 		<?php echo $this->fetch('content'); ?>
-	</div>
 
-
-
-	<div id="footer">
-		<?php echo $this->Element('footer');?>
-	</div>
-</div>
-	<?php echo $this->Html->script('jquery-2.2.1');?>
-	<?php echo $this->Html->script('bootstrap.min.js');?>
 <?php echo $this->Js->writeBuffer();?>
 </body>
 </html>

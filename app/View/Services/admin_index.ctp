@@ -1,6 +1,6 @@
 <div class="container">
 	<h2><?php echo __('Usługi'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table class='table table-striped' cellpadding="0" cellspacing="0">
 		<thead>
 		<tr>
 			<th><?php echo 'id'; ?></th>
@@ -13,7 +13,7 @@
 		</thead>
 		<tbody>
 		<?php foreach ($services as $service): ?>
-			<tr>
+			<tr class='table__align-columns-middle'>
 				<td><?php echo h($service['Service']['id']); ?></td>
 
 				<?php // znajdz id salonu w tabeli service "join"
