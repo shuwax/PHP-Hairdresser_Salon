@@ -1,6 +1,6 @@
 <div class="container">
 	<h2><?php echo __('Pracownicy'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table class='table table-striped' cellpadding="0" cellspacing="0">
 		<thead>
 		<tr>
 			<th><?php echo 'id'; ?></th>
@@ -13,7 +13,7 @@
 		</thead>
 		<tbody>
 		<?php foreach ($employees as $employee): ?>
-			<tr>
+			<tr class='table__align-columns-middle'>
 				<td><?php echo h($employee['Employee']['id']); ?></td>
 				<td><?php echo h($employee['Employee']['first_name']); ?></td>
 				<td><?php echo h($employee['Employee']['last_name']); ?></td>

@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class SalonsController extends AppController {
 
-	var $uses = array('Reservation', 'Service', 'User', 'Salon');
+	var $uses = array('Reservation', 'Service', 'User', 'Salon','Employee');
 
 	public function admin_index() {
 		$this->set('salons',$this->Salon->find('all'));
@@ -17,9 +17,12 @@ class SalonsController extends AppController {
 
 
 	public function view($id = null) {
+		$this->set('employees',$this->Employee->find('list',array('conditions' => array(
+			'Employee.salons_id' => array($id)))));
 		$this->set('salon', $this->Salon->findByid($id));
 		$this->set('services', $this->Service->find('all',array('conditions' => array(
 			'Service.salons_id' => array($id)))));
+		
 	}
 
 
