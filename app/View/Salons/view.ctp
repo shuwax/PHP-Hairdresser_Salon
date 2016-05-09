@@ -84,7 +84,15 @@
 		}
         .featherlight-content
         {
-            width:500px;
+            height: 391px;
+        }
+        .rezerwuj
+        {
+            float: left;
+        }
+        .btn-primary
+        {
+            bottom: 0px !important;
         }
 	</style>
 </head>
@@ -126,7 +134,7 @@
                             <td data-featherlight="#fl<?php echo $nrwiersza?>"><?php echo $service['Service']['price']." PLN"?></td>
                         </tr>
 
-                                <div class="lightbox" id="fl<?php echo $nrwiersza?>">
+                                <div class="lightbox" id="fl<?php echo $nrwiersza?>" data-id="<?php echo $service['Service']['id']?>">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="col-lg-6">
@@ -147,8 +155,8 @@
                                             </p>
                                         </div>
                                         <div class="col-lg-12">
-                                            <?php echo "Data Usługi".$this->Form->date('screening_date',array('class' => 'form-control input-lg'));?>
-                                            <?php  echo "Godzina Usługi".$this->Form->time('time',array('class' => 'form-control input-lg'));?>
+                                            <?php echo "Data Usługi".$this->Form->date('screening_date',array('class' => 'da'));?>
+                                            <?php  echo "Godzina Usługi".$this->Form->time('time',array('class' => 'ta'));?>
 
                                         </div>
                                     </div>
@@ -164,8 +172,10 @@
                                             <div class="status">
                                                 <p class="text-center">Wolny/Zajęty termin</p>
                                             </div>
-                                            <?php echo $this->Html->link('Zarezerwuj miejsce',array('controller' => 'Salons', 'action' => 'view', $salon['Salon']['id']),array('class'=>'btn btn-primary'))?>
-                                            <?php echo $this->Form->end(__('Dodaj Pracownik')); ?>
+
+                                            <div class="rezerwuj">
+                                                <span class="btn btn-primary" style="color:white;position: relative;bottom: -17px;">Rezerwuj</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <?php $nrwiersza++?>
@@ -191,6 +201,79 @@
 
 </html>
 <script>
+
+
+
+</script>
+<script>
+    var data = document.getElementById("ReservationsScreeningDate");
+    var rdata;
+    var time = document.getElementById("ReservationsTime");
+    var employees = document.getElementById("ReservationsEmployees");
+    var today = new Date();
+    var hh = today.getHours();
+    var ms = today.getMinutes();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+    var click = 0;
+    var clicktime = 0;
+    var serviceid;
+    if(ms<10) {
+        ms='0'+ms
+    }
+
+    if(hh<10) {
+        hh='0'+hh
+    }
+    var todaytime = hh+":"+ms;
+    if(dd<10) {
+        dd='0'+dd
+    }
+
+    if(mm<10) {
+        mm='0'+mm
+    }
+    today = yyyy+'-'+mm+'-'+dd;
+
+    $('.da').on('click',function()
+    {
+        if(click==0){
+            this.value = today;
+            //wpis();
+            //dostepny();
+            click ++;}
+        rdata = this.value;
+    });
+
+    $('.ta').on('click',function()
+    {
+        if(clicktime==0){
+            this.value = todaytime;
+            //wpis();
+            //dostepny();
+            clicktime ++;}
+    });
+    $('.lightbox').on('click',function()
+    {
+        serviceid = $(this).data("id");
+    });
+
+    $('.rezerwuj').click(function()
+    {
+
+
+        $.ajax({
+            type: "POST",
+            data: {reservation_date:rdata,users_id: <?php echo AuthComponent::user('id')?>,services_id:serviceid},
+            url: "/PHP-Hairdresser_Salon/Reservations/add/",
+            success: function () {
+                window.location.href = '../../reservations/indexuser';
+            }
+        });
+
+    });
+
     (function(i,s,o,g,r,a,m)
     {
         i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
@@ -199,10 +282,11 @@
         a=s.createElement(o),m=s.getElementsByTagName(o)[0];
         a.async=1;
         a.src=g;
-        m.parentNode.insertBefore(a,m)
+        m.parentNode.insertBefore(a,m);
     })
-    (window,document,'script','//stats.g.doubleclick.net/dc.js','ga');
 
+    (window,document,'script','//stats.g.doubleclick.net/dc.js','ga');
     ga('create', 'UA-5342062-6', 'noelboss.github.io');
     ga('send', 'pageview');
 </script>
+

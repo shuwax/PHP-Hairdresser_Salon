@@ -65,18 +65,20 @@ class ReservationsController extends AppController {
     }
 
     public function add() {
-        $this->set('users', $this->User->find('list'));
-        $this->set('services', $this->Service->find('list'));
-
-        if ($this->request->is('post')) {
+        if($this->request->is('ajax'))
+        {
             $this->Reservation->create();
-            debug($this->request->data);
-            if ($this->Reservation->save($this->request->data)) {
-                $this->Flash->success(__('Uzytkownik został dodany'));
-                return $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Flash->error(__('Uzytkownik nie został dodany.'));
+            if($this->Reservation->save($this->request->data))
+            {
+                CakeLog::write('debug', 'myArray22222'.print_r($this->request->data, true) );
+                $this->redirect('../');
+
             }
+            else
+            {
+                $this->Flash->error('Brak możliwości stworzenia Event.');
+            }
+            die();
         }
     }
 
@@ -107,7 +109,13 @@ class ReservationsController extends AppController {
         } else {
             $this->Flash->error(__('Rezerwacja nie został usunięta'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('action' => 'indexuser'));
+    }
+    public function indexuser()
+    {
+        $this->set('reservations', $this->Reservation->find('all',array('order' => 'Reservation.id DESC')));
+        $this->set('users', $this->User->find('all'));
+        $this->set('services', $this->Service->find('all'));
     }
 
 }
