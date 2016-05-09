@@ -5,17 +5,21 @@
 	<title>Administrator | <?php echo $title_for_layout; ?></title>
 	<?php
 	echo $this->fetch('meta');
+	echo $this->Html->css(array('sb-admin.css'));
 	echo $this->Html->css(array('bootstrap.min.css'));
-	echo $this->Html->css(array('admin'));
+	echo $this->Html->css(array('seatreservations'));
+
 	echo $this->fetch('css');
 	echo $this->fetch('script');
 	?>
 </head>
 <body>
 <div id="container">
+	<?php echo $this->Html->script('jquery-2.2.1');?>
+	<?php echo $this->Html->script('bootstrap.min');?>
 
 	<?php echo $this->Element('adminmenu');?>
-	<div>
+	<div id="content">
 
 		<?php echo $this->Flash->render(); ?>
 		<?php echo $this->fetch('content'); ?>
@@ -28,8 +32,6 @@
 	</div>
 
 </div>
-	<?php echo $this->Html->script('jquery-2.2.1');?>
-	<?php echo $this->Html->script('bootstrap.min.js');?>
 <?php echo $this->Js->writeBuffer();?>
 </body>
 </html>

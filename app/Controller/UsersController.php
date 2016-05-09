@@ -4,18 +4,27 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
+	public $components = array('Paginator');
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('add','view');
+	}
+
 	public function login() {
+		$this->layout = 'login';
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				$this->redirect(array('controller' => 'Pages','action' => 'display'));
 			}
-			$this->Flash->error(__('Niepoprawna nazwa użytkowwnika lub hasło.'));
+			$this->Flash->error(__('Invalid username or password, try again'));
+			$this->redirect(array('controller' => 'Users','action' => 'login'));
 		}
 	}
 
 	public function logout() {
-		$this->Auth->logout();
-		$this->redirect(array('controller' => 'Pages','action' => 'display'));
+			$this->Auth->logout();
+			$this->redirect(array('controller' => 'Pages','action' => 'display'));
 	}
 
 
@@ -46,14 +55,14 @@ class UsersController extends AppController {
 	}
 
 	public function add() {
-            $this->logout = 'login';
+		$this->layout = 'login';
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('Uzytkownik został dodany'));
+				$this->Flash->success(__('The user has been saved.'));
 				return $this->redirect(array('controller' => 'Pages','action' => 'display'));
 			} else {
-				$this->Flash->error(__('Uzytkownik nie został dodany.'));
+				$this->Flash->error(__('The user could not be saved. Please, try again.'));
 			}
 		}
 	}

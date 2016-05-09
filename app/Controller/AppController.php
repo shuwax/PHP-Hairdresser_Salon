@@ -56,6 +56,6 @@ class AppController extends Controller {
             $this->layout = 'admin';
         }
         else $this->layout = 'default';
-        $this->Auth->allow('index', 'view','display','add');
+        $this->Auth->allow('index', 'view','display');
     }
 }

@@ -15,7 +15,12 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Custom CSS -->
-	
+	<style>
+		.row
+		{
+			margin-top: 25px;
+		}
+	</style>
 	<!-- Custom Fonts -->
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
