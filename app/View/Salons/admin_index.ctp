@@ -19,7 +19,7 @@
 	<style>
 		img
 		{
-			width: 372px!important;
+			width: 300px!important;
 		}
 	</style>
 
