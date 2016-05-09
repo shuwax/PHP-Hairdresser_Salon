@@ -33,6 +33,7 @@ class UsersController extends AppController {
 
 
 	public function admin_add() {
+            
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -45,6 +46,7 @@ class UsersController extends AppController {
 	}
 
 	public function add() {
+            $this->logout = 'login';
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
