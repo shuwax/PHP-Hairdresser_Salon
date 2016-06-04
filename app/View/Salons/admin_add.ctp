@@ -85,6 +85,9 @@
 							echo $this->Form->input('filename',array('type'=>'file','label' => 'Zdjęcie','class' => 'form-control input-lg'));
 							echo $this->Form->input('tel',array('label' => 'Numer kontaktowy','class' => 'form-control input-lg'));
 							echo $this->Form->input('email',array('label' => 'E-mail','class' => 'form-control input-lg'));
+							echo "Czas otwarcia salonu: ",$this->Form->time('timeopen',array('class' => 'ta'));
+							echo "Czas zamknięcia salonu: ",$this->Form->time('timeclose',array('class' => 'ta'));
+							echo "Czy salon ma być promowany  ", $this->Form->checkbox('promowane',array('label' => 'Promowane'));
 							?>
 						</fieldset>
 						<?php echo $this->Form->end(__('Zapisz Salon')); ?>

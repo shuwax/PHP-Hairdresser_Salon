@@ -78,13 +78,15 @@
 						<fieldset>
 							<legend style="text-align: center"><?php echo __('Edycja Salonu'); ?></legend>
 							<?php
-							echo $this->Form->input('id',array('hidden' => 'true'));
 							echo $this->Form->input('name',array('label' => 'Nazwa salonu','class' => 'form-control input-lg'));
 							echo $this->Form->input('city',array('label' => 'Miasto','class' => 'form-control input-lg'));
 							echo $this->Form->input('adress',array('label' => 'Adres','class' => 'form-control input-lg'));
 							echo $this->Form->input('filename',array('type'=>'file','label' => 'Zdjęcie','class' => 'form-control input-lg'));
 							echo $this->Form->input('tel',array('label' => 'Numer kontaktowy','class' => 'form-control input-lg'));
 							echo $this->Form->input('email',array('label' => 'E-mail','class' => 'form-control input-lg'));
+							echo "Czas otwarcia salonu: ",$this->Form->time('timeopen',array('class' => 'ta'));
+							echo "Czas zamknięcia salonu: ",$this->Form->time('timeclose',array('class' => 'ta'));
+							echo "Czy salon ma być promowany  ", $this->Form->checkbox('promowane',array('label' => 'Promowane'));
 							?>
 						</fieldset>
 						<?php echo $this->Form->end(__('Zapisz Salon')); ?>

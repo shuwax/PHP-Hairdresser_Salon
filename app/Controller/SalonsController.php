@@ -19,6 +19,7 @@ class SalonsController extends AppController {
 	public function view($id = null) {
 		$this->set('employees',$this->Employee->find('list',array('conditions' => array(
 			'Employee.salons_id' => array($id)))));
+		$this->set('reservations',$this->Reservation->find('all'));
 		$this->set('salon', $this->Salon->findByid($id));
 		$this->set('services', $this->Service->find('all',array('conditions' => array(
 			'Service.salons_id' => array($id)))));
@@ -42,11 +43,14 @@ class SalonsController extends AppController {
 		$dane = $this->Salon->findByid($id);
 		if($this->request->is(array('post','put')))
 		{
+
 			$this->Salon->id = $id;
-			if($this->request->data['Salon']['filename']==null)
+			if($this->request->data['Salon']['filename']['name']==null)
 			{
-				$this->request->data['Salon']['filename'] = $dane['Movie']['filename'];
+				$this->request->data['Salon']['filename'] = $dane['Salon']['filename'];
 			}
+			CakeLog::write('debug', 'myArray22222'.print_r( $this->request->data, true) );
+			CakeLog::write('debug', 'myArray22222'.print_r( $dane, true) );
 			if($this->Salon->save($this->request->data))
 			{
 				$this->Flash->success('Salon zedytowany.');

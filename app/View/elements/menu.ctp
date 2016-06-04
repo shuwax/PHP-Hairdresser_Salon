@@ -48,9 +48,14 @@
                     <li>
                         <a href="<?php  echo $this->Html->url(array('controller'=>'reservations','action'=>'indexuser'), true);?>">Twoje rezerwacje</a>
                     </li>
-                    <?php if(AuthComponent::user('role') == 'admin'):?>
+                    <?php if(AuthComponent::user('role') == '0'):?>
                         <li>
                             <a href="<?php  echo $this->Html->url(array('controller'=>'admin/Salons'), true);?>">Admin Panel</a>
+                        </li>
+                    <?php endif?>
+                    <?php if(AuthComponent::user('role') == '2'):?>
+                        <li>
+                            <a href="<?php  echo $this->Html->url(array('controller'=>'Employees','action'=>'indexemployee'), true);?>">Harmonogram pracy </a>
                         </li>
                     <?php endif?>
 

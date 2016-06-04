@@ -4,6 +4,8 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
+	var $uses = array('Reservation', 'Service', 'User', 'Salon','Employee');
+	
 	public $components = array('Paginator');
 
 	public function beforeFilter() {
@@ -70,9 +72,24 @@ class UsersController extends AppController {
 	public function admin_edit($id = null) {
 
 		$dane = $this->User->findByid($id);
+		$this->set('employees',$this->Employee->find('list'));
+		$this->set('dane',$dane);
 		if($this->request->is(array('post','put')))
 		{
 			$this->User->id = $id;
+			if($this->data['User']['employees_id'] == "")
+			{
+				$data = array('username' => $this->data['User']['username'],'first_name' => $this->request->data['User']['first_name'],'last_name' =>
+					$this->request->data['User']['last_name'],'email' => $this->request->data['User']['email'],'tel' => $this->request->data['User']['tel']
+				,'role' => $this->request->data['User']['role'],'employees_id' => 0);
+				CakeLog::write('debug', 'myArray22222'.print_r( $data, true) );
+				if($this->User->save($data)) {
+					$this->Flash->success('Uzytkownik zedytowany.');
+					$this->redirect('index');
+				}
+			}
+
+
 			if($this->User->save($this->request->data))
 			{
 				$this->Flash->success('Uzytkownik zedytowany.');
@@ -83,22 +100,7 @@ class UsersController extends AppController {
 		}
 		$this->request->data = $dane;
 	}
-	
-	public function edit($id = null) {
-		$dane = $this->User->findByid($id);
-		if($this->request->is(array('post','put')))
-		{
-			$this->User->id = $id;
-			if($this->User->save($this->request->data))
-			{
-				$this->Flash->success('Uzytkownik zedytowany.');
-				$this->redirect('index');
-			}
-			else
-				$this->Flash->error('Brak możliwości edycji uzytkownika.');
-		}
-		$this->request->data = $dane;
-	}
+
 
 
 	public function admin_delete($id = null) {

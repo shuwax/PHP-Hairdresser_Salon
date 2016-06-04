@@ -1,4 +1,5 @@
-
+<?php $timeopen =  $salon['Salon']['timeopen'];
+    $timeclose = $salon['Salon']['timeclose']?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +85,7 @@
 		}
         .featherlight-content
         {
-            height: 391px;
+
         }
         .rezerwuj
         {
@@ -138,12 +139,14 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="col-lg-6">
+                                                Godziny otwarcia Salonu: <?php echo $salon['Salon']['timeopen']?> - <?php echo $salon['Salon']['timeclose']?>
+                                            </div>
+                                            <div class="col-lg-6">
                                                 Usługa: <?php echo $service['Service']['service_name']?>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p>
-                                                    Planowany czas trwania usługi: <?php echo $service['Service']['service_time']?>
-                                                </p>
+                                                    Planowany czas trwania usługi:<div id="<?php echo $service['Service']['id']?>U"> <?php echo $service['Service']['service_time']?> </div> min
+
                                             </div>
                                         </div>
                                     </div>
@@ -156,6 +159,27 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <?php echo "Data Usługi".$this->Form->date('screening_date',array('class' => 'da'));?>
+                                            <?php echo $this->Form->input('employees',array('label' => 'Pracownik','empty'=>'Wybierz pracownika..','class'=>'pracownik'));?>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="termin">
+                                                <?php if(AuthComponent::user()) {?>
+                                                <div class="kaliwsztermin">
+                                                    <span class="btn btn-primary" style="color:white;position: relative;bottom: -17px;" id="klawisztermin">Sprawdz termin</span>
+                                                </div>
+                                                <?php }?>
+                                                <p class="text-center">
+                                                    Plan Pracownika na wybrany dzień:
+                                                </p>
+                                                <div id="tabelapracownika">
+                                                </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
                                             <?php  echo "Godzina Usługi".$this->Form->time('time',array('class' => 'ta'));?>
 
                                         </div>
@@ -163,19 +187,20 @@
 
                                     <div class="row">
                                         <div class="col-lg-12">
-                                                <?php echo $this->Form->input('employees',array('label' => 'Pracownik','empty'=>'Wybierz pracownika..','class' => 'form-control input-lg'));?>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-12">
                                             <div class="status">
-                                                <p class="text-center">Wolny/Zajęty termin</p>
-                                            </div>
+                                                </div>
 
+
+                                            <?php if(AuthComponent::user()) {?>
                                             <div class="rezerwuj">
                                                 <span class="btn btn-primary" style="color:white;position: relative;bottom: -17px;">Rezerwuj</span>
                                             </div>
+                                            <?php } else{ ?>
+                                                <div class="zaloguj">
+                                                    <p style="text-align: center">Zanim dokonasz rezerwacji, musiz się zalogować.</p>
+                                                    <?php echo $this->Html->link('Zaloguj się',array('controller' => 'Users', 'action' => 'login'),array('class'=>'btn btn-primary'))?>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <?php $nrwiersza++?>
@@ -206,10 +231,13 @@
 
 </script>
 <script>
-    var data = document.getElementById("ReservationsScreeningDate");
+    var data = document.getElementsByClassName("da");
+    var czass = document.getElementsByClassName("ta");
     var rdata;
+    var rezerwacje = <?php echo json_encode($reservations)?>;
+    var serwis = <?php echo json_encode($services)?>;
     var time = document.getElementById("ReservationsTime");
-    var employees = document.getElementById("ReservationsEmployees");
+    var employees = document.getElementsByClassName("pracownik");
     var today = new Date();
     var hh = today.getHours();
     var ms = today.getMinutes();
@@ -219,6 +247,15 @@
     var click = 0;
     var clicktime = 0;
     var serviceid;
+    var idemoloyee = 0;
+    var datawpisana = 0;
+    var czaswpisany = 0;
+    var czaswpisnayzak = 0;
+    var timeopen = <?php echo json_encode($timeopen)?>;
+    var timeclose = <?php echo json_encode($timeclose)?>;
+    var konflikt = false;
+    var pusty = document.getElementsByClassName('ta');
+    pusty = pusty[pusty.length-1].value;
     if(ms<10) {
         ms='0'+ms
     }
@@ -236,10 +273,67 @@
     }
     today = yyyy+'-'+mm+'-'+dd;
 
+    function sprawdzpracownika() {
+        idemoloyee = employees[employees.length-1].value;
+    }
+    function sprawdzdate() {
+        datawpisana = data[data.length-1].value;
+    }
+    function sprawdzgodzine() {
+        czaswpisany = czass[czass.length-1].value;
+    }
+    $('.kaliwsztermin').click(function() {
+        sprawdzpracownika();
+        sprawdzdate();
+        if(idemoloyee == 0 )
+        {
+            alert("Wybierz pracownika!");
+        }
+        if(datawpisana == 0  )
+        {
+            alert("Wybierz Datę usługi!");
+        }
+        if(idemoloyee != 0 && datawpisana != 0 )
+        {
+            var ni = document.getElementsByClassName('termin');
+            var tabterm = document.getElementById('');
+            $("#tableatermoinow").remove();
+            var newdiv = document.createElement('div');
+            newdiv.setAttribute('id', 'tableatermoinow');
+            var kodtabeli = '<div class="table-responsive"> <table class="table table-bordered table-hover table-striped"><thead><tr><th>Usługa</th><th>Data Usługi</th><th>Czas rozpoczecia</th>' +
+                '<th>Czas zakonczenia</th></tr></thead>';
+
+            for(var i=0;i<rezerwacje.length;i++)
+            {
+               if(rezerwacje[i]['Reservation']['employees_id'] == idemoloyee && (rezerwacje[i]['Reservation']['reservation_date'] == datawpisana)) {
+                    //alert(rezerwacje[i]['Reservation']['id']);
+                   var data = rezerwacje[i]['Reservation']['reservation_date'];
+                   var czas_rozp =rezerwacje[i]['Reservation']['timeB'];
+                   var czas_zak =rezerwacje[i]['Reservation']['timeE'];
+                   for(var j=0;j<serwis.length;j++)
+                   {
+                       if(serwis[j]['Service']['id'] == rezerwacje[i]['Reservation']['services_id'])
+                       {
+                           var nazwauslugi = serwis[j]['Service']['service_name'];
+                       }
+                   }
+                    kodtabeli = kodtabeli + '<tbody><tr><td>'+nazwauslugi+'</td><td>'+data+'</td><td>'+czas_rozp+'</td><td>'+czas_zak+'</td><tr></tbody>';
+                }
+           }
+            kodtabeli = kodtabeli + '</table></div>';
+            newdiv.innerHTML = kodtabeli;
+
+            ni[ni.length-1].appendChild(newdiv);
+            //ni.appendChild(newdiv[0]);
+        }
+
+    });
+
     $('.da').on('click',function()
     {
         if(click==0){
             this.value = today;
+
             //wpis();
             //dostepny();
             click ++;}
@@ -249,11 +343,116 @@
     $('.ta').on('click',function()
     {
         if(clicktime==0){
-            this.value = todaytime;
+            this.value = timeopen;
             //wpis();
             //dostepny();
             clicktime ++;}
+      //  this.value= pusty;
     });
+    $('.da').on('change',function()
+    {
+        var pojemnik = document.getElementsByClassName('ta');
+        for(var i=0;i<pojemnik.length;i++)
+        {
+            pojemnik[i].value = pusty;
+        }
+    });
+    $('.ta').on('change',function () {
+        konflikt = false;
+        var czasu = document.getElementById(serviceid+'U');
+        sprawdzpracownika();
+        sprawdzdate();
+        if(idemoloyee == 0 )
+        {
+            alert("Wybierz pracownika!");
+        }
+        if(datawpisana == 0  )
+        {
+            alert("Wybierz Datę usługi!");
+        }
+        if(this.value <= timeopen)
+        {
+            konflikt = true;
+        }
+        var time = this.value;
+        var zm = parseInt(czasu.textContent);
+        var timenew = new Date();
+
+        timenew.setHours(time.substr(0, 2));
+        timenew.setMinutes(time.substr(3, 2));
+        timenew.setMinutes(timenew.getMinutes() + zm);
+        time = time +":00";
+        var mm = timenew.getMinutes();
+        var hh = timenew.getHours();
+        if(mm < 10)
+        {
+            mm = '0'+mm;
+        }
+        if(hh < 10)
+        {
+            hh= '0'+hh;
+        }
+
+        var konieu = hh + ':' + mm + ':' + '00';
+        czaswpisnayzak = konieu;
+        if(konieu >= timeclose)
+        {
+            konflikt = true;
+        }
+        if(konflikt == false) {
+            if (idemoloyee != 0 && datawpisana != 0) {
+                for (var i = 0; i < rezerwacje.length; i++) {
+                    if (rezerwacje[i]['Reservation']['employees_id'] == idemoloyee && (rezerwacje[i]['Reservation']['reservation_date'] == datawpisana))
+                    {
+                        if (time >= rezerwacje[i]['Reservation']['timeB'] && time <= rezerwacje[i]['Reservation']['timeE'])
+                        {
+                            konflikt = true;
+                        }
+                        if(konieu >= rezerwacje[i]['Reservation']['timeB'] && konieu <= rezerwacje[i]['Reservation']['timeE'])
+                        {
+                            konflikt = true;
+                        }
+                        if(time <= rezerwacje[i]['Reservation']['timeB'] && konieu >= rezerwacje[i]['Reservation']['timeE'])
+                        {
+                            konflikt = true;
+                        }
+                    }      
+                }
+            }
+        }
+        if(konflikt == true)
+        {
+            var miejsce = document.getElementsByClassName('status');
+            miejsce[miejsce.length-1].innerHTML = '<div class="alert alert-danger " style="' +
+                'width:655px;margin-top: 14px">'+
+                '<a href="#" class="close" data-dismiss="alert">×</a>'+
+            '<strong>Uwaga!</strong> Konflikt godzin(Spróbuj innej godziny).'+'</div>';
+            // document.getElementById('GodzinyKonflikt').style.backgroundColor = 'red';
+            // document.getElementById('GodzinyKonflikt').style.left = '38';
+
+
+        }
+        else
+        {
+            var miejsce = document.getElementsByClassName('status');
+            miejsce[miejsce.length-1].innerHTML = '<div id="myAlert" class="alert alert-success" style="' +
+                'width:655px;margin-top: 14px;">'+
+            ' <a href="#" class="close" data-dismiss="alert">×</a>'+'<strong>Sukces!</strong> Godziny dobrane odpowienia, aby potwierdzić rezerwacje, naciśnij przycisk "Rezerwuj" .'+
+            '</div>';
+
+
+        }
+    });
+    $('.pracownik').on('change',function()
+    {
+        idemoloyee = employees[employees.length-1].value;
+        var pojemnik = document.getElementsByClassName('ta');
+        for(var i=0;i<pojemnik.length;i++)
+        {
+            pojemnik[i].value = pusty;
+        }
+    });
+
     $('.lightbox').on('click',function()
     {
         serviceid = $(this).data("id");
@@ -261,16 +460,35 @@
 
     $('.rezerwuj').click(function()
     {
+        sprawdzpracownika();
+        sprawdzdate();
+        sprawdzgodzine();
+        if(konflikt == true)
+        {
+            alert("Napraw dane zanim dokonasz rezerwacji");
+        }else if(idemoloyee == 0 || datawpisana == 0 || czaswpisany == 0 )
+        {
 
-
-        $.ajax({
-            type: "POST",
-            data: {reservation_date:rdata,users_id: <?php echo AuthComponent::user('id')?>,services_id:serviceid},
-            url: "/PHP-Hairdresser_Salon/Reservations/add/",
-            success: function () {
-                window.location.href = '../../reservations/indexuser';
-            }
-        });
+            alert("Nie wpisano wszsystkich danych potrzebnych do rezerwacji");
+        }
+        else {
+            czaswpisany= czaswpisany+':00';
+            $.ajax({
+                type: "POST",
+                data: {
+                    reservation_date: rdata,
+                    users_id: <?php echo AuthComponent::user('id')?>,
+                    services_id: serviceid,
+                    employees_id:idemoloyee,
+                    timeB:czaswpisany,
+                    timeE:czaswpisnayzak
+                },
+                url: "/PHP-Hairdresser_Salon/Reservations/add/",
+                success: function () {
+                    window.location.href = '../../reservations/indexuser';
+                }
+            });
+        }
 
     });
 

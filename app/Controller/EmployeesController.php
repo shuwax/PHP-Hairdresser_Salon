@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class EmployeesController extends AppController {
 
-	var $uses = array('Salon','Service','Employee');
+	var $uses = array('Salon','Service','Employee','Reservation','User');
 
 	public function admin_index() {
 		$this->set('employees',$this->Employee->find('all'));
@@ -59,5 +59,13 @@ class EmployeesController extends AppController {
 			$this->Flash->error(__('Pracownik nie został usunięty'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function indexemployee()
+	{
+		$this->set('reservations', $this->Reservation->find('all',array('order' => 'Reservation.id DESC')));
+		$this->set('users', $this->User->find('all'));
+		$this->set('services', $this->Service->find('all'));
+		$this->set('employees', $this->Employee->find('all'));
 	}
 }

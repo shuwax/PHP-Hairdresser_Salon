@@ -71,16 +71,13 @@ $salons = $this->requestAction(array('controller'=>'salons','action'=>'index'));
                 <div class="item active">
                     <div class="row text-center">
                         <?php foreach($salons as $salon):?>
-                            <?php if($test1 < 4):?>
+                            <?php if($test1 < 4 && $salon['Salon']['promowane'] == 1):?>
                                 <div class="col-md-3 col-sm-6 hero-feature">
                                     <div class="thumbnail" id="zdjecieslider">
                                         <?php echo $this->Html->image('../files/salon/filename/'.$salon['Salon']['id'].'/'.$salon['Salon']['filename'],array(
                                             'url' => array('controller' => 'Salons', 'action' => 'view', $salon['Salon']['id'])));?>
-
                                         <div class="caption">
-
                                             <h3><?php echo $salon['Salon']['name'];?></h3>
-
                                             <?php echo $salon['Salon']['city'];?>
                                             <p>
                                                 <?php echo $this->Html->link('Zarezerwuj miejsce',array('controller' => 'Salons', 'action' => 'view', $salon['Salon']['id']),array('class'=>'btn btn-primary'))?>
@@ -97,11 +94,10 @@ $salons = $this->requestAction(array('controller'=>'salons','action'=>'index'));
             <?php endif;?>
             <?php if($ilosc !=0):?>
                 <?php  $test1=0;?>
-
                 <div class="item">
                     <div class="row text-center">
                         <?php foreach($salons as $salon):?>
-                            <?php if($test1 < 4):?>
+                            <?php if($test1 < 4 && $salon['Salon']['promowane'] == 1):?>
                                 <div class="col-md-3 col-sm-6 hero-feature">
                                     <div class="thumbnail" id="zdjecieslider">
                                         <?php echo $this->Html->image('../files/salon/filename/'.$salon['Salon']['id'].'/'.$salon['Salon']['filename'],array(

@@ -79,24 +79,22 @@
 							<legend style="text-align: center"><?php echo __('Edycja uzytkownika'); ?></legend>
 							<?php
 							echo $this->Form->input('username',array('label' => 'Nazwa uzytkownika','class' => 'form-control input-lg'));
-							echo $this->Form->input('password',array('label' => 'Haslo uzytkownika','class' => 'form-control input-lg'));
 							echo $this->Form->input('first_name',array('label' => 'Imie','class' => 'form-control input-lg'));
 							echo $this->Form->input('last_name',array('label' => 'Nazwisko','class' => 'form-control input-lg'));
 							echo $this->Form->input('email',array('label' => 'Email','class' => 'form-control input-lg'));
 							echo $this->Form->input('tel',array('label' => 'Telefon','class' => 'form-control input-lg'));
+							echo $this->Form->input('role',array('label' => 'Rola w systemie','class' => 'form-control input-lg','options'=>array('admin','user','employee'),'value' => $dane['User']['role']));
+							echo $this->Form->input('employees_id',array('label' => 'Odnośnik do pracownika','class' => 'form-control input-lg','empty'=>'Brak'));
 							?>
 						</fieldset>
 						<?php echo $this->Form->end(__('Zapisz zmiany')); ?>
 					</div>
 					<div class="col-lg-2">
-
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- /.row -->
-
-
 	</div>
 	<!-- /.container-fluid -->
 
@@ -107,7 +105,8 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="js/jquery.js">
+</script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -116,6 +115,24 @@
 
 </html>
 
+<script>
+	var e = document.getElementById("UserRole");
+	window.onload = function() {
+		if(e.options[e.selectedIndex].text != 'employee')
+		{
+			document.getElementById("UserEmployeesId").disabled =true;
+		}
+	}
+
+		$('#UserRole').on('change',function () {
+		if(this.value==2)
+		{
+			document.getElementById("UserEmployeesId").disabled =false;
+		}
+			else document.getElementById("UserEmployeesId").disabled =true;
+
+	})
+</script>
 
 
 

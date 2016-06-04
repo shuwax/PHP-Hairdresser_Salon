@@ -57,12 +57,16 @@
 						<tr>
 							<th>Usługa</th>
 							<th>Data przeprowadzenia usługi</th>
+							<th>Czas rozpoczecia uslugi</th>
+							<th>Czas zakoniczenia uslugi</th>
+							<th>Pracownik wykonujacy usluge</th>
 							<th>Opcje</th>
 						</tr>
 						</thead>
 						<tbody>
 						<?php foreach ($reservations  as $reservation): ?>
-							<tr>
+						<?php if($reservation['Reservation']['users_id'] == AuthComponent::user('id')):?>
+						<tr>
 
 								<?php foreach ($services as $service): ?>
 									<?php if($service['Service']['id'] == $reservation['Reservation']['services_id'])
@@ -72,17 +76,23 @@
 									?>
 								<?php endforeach; ?>
 								<td> <?php echo $reservation['Reservation']['reservation_date'];?></td>
+								<td> <?php echo $reservation['Reservation']['timeB'];?></td>
+								<td> <?php echo $reservation['Reservation']['timeE'];?></td>
 
-
-
-
+								<?php foreach ($employees as $employee): ?>
+								<?php if($employee['Employee']['id'] == $reservation['Reservation']['employees_id'])
+								{
+									?> <td> <?php echo $employee['Employee']['first_name']," ", $employee['Employee']['last_name'] ;?></td><?php
+								}
+								?>
+								<?php endforeach; ?>
 								<td class="actions">
-									<?php echo $this->Html->link(__('Edytuj rezerwacje'), array('controller'=>'/Reservations','action' => 'edit', $reservation['Reservation']['id']),array('class' => 'btn btn-warning')); ?>
 									<?php echo $this->Form->postLink(__('Usuń rezerwacje'), array('controller'=>'/Reservations','action' => 'delete', $reservation['Reservation']['id']),array('class' => 'btn btn-danger'), array('confirm' => __('Are you sure you want to delete # %s?', $reservation['Reservation']['id']))); ?>
 								</td>
 							</tr>
-						<?php endforeach; ?>
 
+							<?php endif?>
+						<?php endforeach; ?>
 						</tbody>
 					</table>
 				</div>
