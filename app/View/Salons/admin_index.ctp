@@ -70,6 +70,8 @@
 							<th><?php echo 'id'; ?></th>
 							<th><?php echo 'Nazwa Salonu'; ?></th>
 							<th><?php echo 'Logo'; ?></th>
+							<th><?php echo 'Godziny otwarcia'; ?></th>
+							<th><?php echo 'Godziny zamknięcia'; ?></th>
 							<th><?php echo 'Miasto'; ?></th>
 							<th><?php echo 'Adres'; ?></th>
 							<th><?php echo 'E-mail'; ?></th>
@@ -83,6 +85,8 @@
 								<td><?php echo h($salon['Salon']['id']); ?></td>
 								<td><?php echo h($salon['Salon']['name']); ?></td>
 								<td><?php echo $this->Html->image('../files/salon/filename/'.$salon['Salon']['id'].'/'.$salon['Salon']['filename'], array('class' => 'table-img')); ?></td>
+								<td><?php echo h($salon['Salon']['timeopen']); ?></td>
+								<td><?php echo h($salon['Salon']['timeclose']); ?></td>
 								<td><?php echo h($salon['Salon']['city']); ?></td>
 								<td><?php echo h($salon['Salon']['adress']); ?></td>
 								<td><?php echo h($salon['Salon']['email']); ?></td>

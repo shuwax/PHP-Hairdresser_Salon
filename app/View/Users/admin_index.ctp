@@ -67,6 +67,7 @@
 							<th><?php echo 'Nazwisko'; ?></th>
 							<th><?php echo 'E-mail'; ?></th>
 							<th><?php echo 'Numer kontaktowy'; ?></th>
+							<th><?php echo 'Rola w systemie'; ?></th>
 							<th class="actions"><?php echo __('Opcje'); ?></th>
 						</tr>
 						</thead>
@@ -79,6 +80,16 @@
 								<td><?php echo h($user['User']['last_name']); ?></td>
 								<td><?php echo h($user['User']['email']); ?></td>
 								<td><?php echo h($user['User']['tel']); ?></td>
+								<td><?php if(($user['User']['role'])== 0 )
+									{
+										echo "Administrator";
+									}
+									else if (($user['User']['role']) == 1)
+									{
+										echo "Użytkownik";
+									}
+									else echo "Pracownik zakładu"?></td>
+
 								<td class="actions">
 									<?php echo $this->Html->link(__('User'), array('action' => 'view', $user['User']['id']),array('class' => 'btn btn-success')); ?>
 									<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $user['User']['id']),array('class' => 'btn btn-warning')); ?>
