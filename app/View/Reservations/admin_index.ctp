@@ -62,9 +62,10 @@
                         <thead>
                         <tr>
                             <th><?php echo 'id'; ?></th>
-                            <th><?php echo 'Data'; ?></th>
-                            <th><?php echo 'User'; ?></th>
-                            <th><?php echo 'Services'; ?></th>
+                            <th><?php echo 'Data wykonania usługi'; ?></th>
+                            <th><?php echo 'Użytkownik dokonujacy rezerwacji'; ?></th>
+                            <th><?php echo 'Wybrana usługa'; ?></th>
+                            <th><?php echo 'Pracownik wykonujący usługe'; ?></th>
 
                             <th class="actions"><?php echo __('Opcje'); ?></th>
                         </tr>
@@ -89,11 +90,14 @@
                                     if($service['Service']['id'] == $reservation['Reservation']['services_id'])
                                         echo "<td>".$service['Service']['service_name']."</td>";
                                 }
+                                foreach($employees as $employee)
+                                {
+                                    if($employee['Employee']['id'] == $reservation['Reservation']['employees_id'])
+                                        echo "<td>".$employee['Employee']['first_name'].' '.$employee['Employee']['last_name']."</td>";
+                                }
                                 ?>
 
                                 <td class="actions">
-                                    <?php echo $this->Html->link(__('Pokaż'), array('action' => 'view', $reservation['Reservation']['id']),array('class' => 'btn btn-success')); ?>
-                                    <?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $reservation['Reservation']['id']),array('class' => 'btn btn-warning')); ?>
                                     <?php echo $this->Form->postLink(__('Usunięcie'), array('action' => 'delete', $reservation['Reservation']['id']),array('class' => 'btn btn-danger'), array('confirm' => __('Jesteś pewien że chcesz usunąć reservation o id: # %s?', $reservation['Reservation']['id']))); ?>
                                 </td>
                             </tr>

@@ -86,7 +86,6 @@
 
 								?>
 								<td class="actions">
-									<?php echo $this->Html->link(__('Pracownik'), array('action' => 'view', $employee['Employee']['id']),array('class' => 'btn btn-success')); ?>
 									<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $employee['Employee']['id']),array('class' => 'btn btn-warning')); ?>
 									<?php echo $this->Form->postLink(__('Usunięcie'), array('action' => 'delete', $employee['Employee']['id']),array('class' => 'btn btn-danger'), array('confirm' => __('Jesteś pewien że chcesz usunąć Pracownika o id: # %s?', $employee['Employee']['id']))); ?>
 								</td>

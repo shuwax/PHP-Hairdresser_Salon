@@ -11,6 +11,7 @@ class ReservationsController extends AppController {
         $this->set('reservations', $this->Reservation->find('all'));
         $this->set('users', $this->User->find('all'));
         $this->set('services', $this->Service->find('all'));
+        $this->set('employees',$this->Employee->find('all'));
     }
 
     public function admin_view($id = null) {

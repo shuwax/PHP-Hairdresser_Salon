@@ -86,7 +86,6 @@
 								<td><?php echo h($service['Service']['service_time']); ?></td>
 								<td><?php echo h($service['Service']['price']); ?></td>
 								<td class="actions">
-									<?php echo $this->Html->link(__('Usługa'), array('action' => 'view', $service['Service']['id']),array('class' => 'btn btn-success')); ?>
 									<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $service['Service']['id']),array('class' => 'btn btn-warning')); ?>
 									<?php echo $this->Form->postLink(__('Usunięcie'), array('action' => 'delete', $service['Service']['id']),array('class' => 'btn btn-danger'), array('confirm' => __('Jesteś pewien że chcesz usunąć usługę o id: # %s?', $service['Service']['id']))); ?>
 								</td>

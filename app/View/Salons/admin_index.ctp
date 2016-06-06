@@ -76,6 +76,7 @@
 							<th><?php echo 'Adres'; ?></th>
 							<th><?php echo 'E-mail'; ?></th>
 							<th><?php echo 'Numer kontaktowy'; ?></th>
+							<th><?php echo 'Czy dodatkowo promowany?'; ?></th>
 							<th class="actions"><?php echo __('Opcje'); ?></th>
 						</tr>
 						</thead>
@@ -91,6 +92,10 @@
 								<td><?php echo h($salon['Salon']['adress']); ?></td>
 								<td><?php echo h($salon['Salon']['email']); ?></td>
 								<td><?php echo h($salon['Salon']['tel']); ?></td>
+								<td><?php if($salon['Salon']['promowane']==1)
+									{
+										echo "Tak";
+									}else echo "Nie" ?></td>
 								<td class="actions">
 									<?php echo $this->Html->link(__('Salon'), array('controller'=>'../salons','action' => 'view', $salon['Salon']['id']), array('class' => 'btn btn-success')); ?>
 									<?php echo $this->Html->link(__('Edycja'), array('action' => 'edit', $salon['Salon']['id']), array('class' => 'btn btn-warning')); ?>
